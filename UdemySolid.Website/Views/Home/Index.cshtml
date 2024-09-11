@@ -1,0 +1,51 @@
+﻿@using UdemySolid.Entity;
+@using UdemySolid.Business;
+
+@{
+    ViewBag.Title = "Index";
+    List<Category> categories = ViewBag.Categories;
+    List<Product> products = ViewBag.Produt;
+    ProductBusiness pb = new ProductBusiness();
+}
+
+<h2>Index</h2>
+
+<div id="container">
+    <div class="row">
+        <div class="col-lg-2">
+            @foreach (Category category in categories)
+            {
+                <div class="row">
+                    <div class="col-lg-10">
+                        @category.Name
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="col-lg-10">
+            @foreach (Product product in products)
+            {
+                <div class="row">
+                    <div class="col-lg-10">
+                        @product.Id
+                    </div>
+                    <div class="col-lg-10">
+                        <strong>@product.Name</strong>
+                    </div>
+                    <div class="col-lg-10">
+                        @product.Price
+                    </div>
+                    <div class="col-lg-10">
+                        %  @product.Tax
+                    </div>
+                    <div class="col-lg-10">
+                        %  @pb.GetTotalPrices(product.Price,product.Tax)
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
